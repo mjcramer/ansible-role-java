@@ -9,7 +9,7 @@ galaxy_info:
     - zesty
   - name: EL
     versions:
-    - 
+    - 7
   galaxy_tags:
     - java
     - installer
