@@ -1,0 +1,13 @@
+# roles/java/defaults/main.yml
+---
+jvm_provider: openjdk
+
+java_version: 1.8
+java_version_major: 8
+
+oracle_jdk_version_major: "8"
+oracle_jdk_version_minor: "0"
+oracle_jdk_version_update: "45"
+oracle_jdk_version_build: "02"
+oracle_jdk_checksum: "sha256: 0bfd5d79f776d448efc64cb47075a52618ef76aabb31fde21c5c1018683cdddd"
+oracle_jdk_download_path: "http://download.oracle.com/otn-pub/java/jdk/{{ oracle_jdk_version_major }}u{{ oracle_jdk_version_update }}-b{{ oracle_jdk_version_build }}"

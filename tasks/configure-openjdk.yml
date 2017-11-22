@@ -1,0 +1,5 @@
+# roles/java/tasks/configure-openjdk.yml
+---
+- name: configure | set java home
+  set_fact:
+    java_home: "{{ openjdk.java_home }}"

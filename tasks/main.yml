@@ -1,0 +1,24 @@
+# roles/java/tasks/main.yml
+---
+- fail:
+    msg: "No jvm has been selected, please set 'jvm_provider' and run playbook again."
+  when: jvm_provider is not defined
+
+- include: download.yml
+  when: jvm_provider | search("oracle")
+  tags:
+    - download
+
+- include: apply.yml
+  when: jvm_provider | search("oracle")
+  tags:
+    - apply
+
+- include: apply-{{ ansible_os_family }}.yml
+  when: jvm_provider | search("openjdk")
+  tags:
+    - apply
+
+- include: configure.yml
+  tags:
+    - configure

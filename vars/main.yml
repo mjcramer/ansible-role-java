@@ -1,0 +1,13 @@
+# roles/java/vars/main.yml
+---
+oracle:
+  local_archive: "{{ download_dir }}/jdk-{{ oracle_jdk_version_major }}u{{ oracle_jdk_version_update }}-linux-x64.tar.gz"
+  remote_archive: "{{ lookup('env','ORACLE_JDK_DOWNLOAD_PATH') | default(oracle_jdk_download_path, true) }}/jdk-{{ oracle_jdk_version_major }}u{{ oracle_jdk_version_update }}-linux-x64.tar.gz"
+  java_home: "{{ base_home_dir }}/jdk1.{{ oracle_jdk_version_major }}.{{ oracle_jdk_version_minor }}_{{ oracle_jdk_version_update }}"
+  
+openjdk:
+  version: "{{ java_version }}.0"
+# TODO: This one is for ubuntu
+#  java_home: /usr/lib/jvm/default-java
+# TODO: This one is for rhel
+  java_home: /usr/lib/jvm/jre-openjdk

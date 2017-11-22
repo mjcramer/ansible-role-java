@@ -1,0 +1,22 @@
+
+- include: configure-{{ jvm_provider }}.yml
+
+- name: configure | create facts dir
+  file:
+    dest: /etc/ansible/facts.d
+    state: directory
+
+- name: configure | create java home fact
+  template:
+    src: java.fact.j2
+    dest: /etc/ansible/facts.d/java.fact
+
+- name:  configure | create shell profile
+  template:
+    src: profile.j2
+    dest: /etc/profile.d/{{ item }}
+  with_items:
+    - java.sh
+    - java.csh
+
+

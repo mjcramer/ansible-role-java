@@ -1,0 +1,21 @@
+# roles/java/tasks/apply-Debian.yml
+---
+- name: openjdk | apt package
+  apt:
+    name: "openjdk-{{ java_version_major }}-jdk"
+    state: present
+
+
+
+
+
+
+
+- block:
+    - include: oracle_jdk.yml
+
+
+
+- block:
+    - include: openjdk.yml
+

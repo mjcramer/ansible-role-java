@@ -1,0 +1,18 @@
+# roles/java/tasks/download.yml
+---
+- name: download | oracle jdk
+  get_url:
+    url: "{{ oracle.remote_archive }}"
+    dest: "{{ oracle.local_archive }}"
+    checksum: "{{ oracle_checksum }}"
+    headers: 'Cookie: oraclelicense=accept-securebackup-cookie'
+    validate_certs: no
+  when: oracle_jdk.remote_archive | match("^http.*$")
+
+- name: oracle jdk | copy
+  copy:
+    src: "{{ oracle.remote_archive }}"
+    dest: "{{ oracle.local_archive }}"
+    mode: 0644
+    force: no
+  when: oracle_jdk.remote_archive | match("^(?!http).*$")
