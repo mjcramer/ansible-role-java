@@ -1,14 +1,8 @@
 # roles/java/tasks/apply.yml
 ---
-- name: apply | create oracle jdk home
-  file:
-    path: "{{ base_home_dir }}"
-    state: directory
+- include_tasks: apply-{{ jvm_provider }}.yml
+  when: jvm_provider | search("oracle")
 
-- name: apply | unpack oracle jdk archive
-  unarchive:
-    src: "{{ oracle.local_archive }}"
-    dest: "{{ base_home_dir }}"
-    copy: no
-    creates: "{{ oracle.java_home }}"
+- include_tasks: apply-{{ ansible_os_family }}.yml
+  when: jvm_provider | search("openjdk")
 

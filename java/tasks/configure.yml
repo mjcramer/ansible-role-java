@@ -1,5 +1,6 @@
-
-- include: configure-{{ jvm_provider }}.yml
+# java/tasks/configure.yml
+---
+- include_tasks: configure-{{ jvm_provider }}.yml
 
 - name: configure | create facts dir
   file:

@@ -1,6 +1,6 @@
 # roles/java/tasks/apply-RedHat.yml
 ---
-- name: openjdk | yum package
+- name: apply | yum package
   yum:
     name: "java-{{ openjdk.version }}-openjdk"
     state: latest

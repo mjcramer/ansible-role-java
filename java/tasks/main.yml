@@ -2,23 +2,12 @@
 ---
 - fail:
     msg: "No jvm has been selected, please set 'jvm_provider' and run playbook again."
-  when: jvm_provider is not defined
+  when: jvm_provider is not defined or ansible_os_family is not defined
 
-- include: download.yml
-  when: jvm_provider | search("oracle")
-  tags:
-    - download
-
-- include: apply.yml
-  when: jvm_provider | search("oracle")
+- import_tasks: apply.yml
   tags:
     - apply
 
-- include: apply-{{ ansible_os_family }}.yml
-  when: jvm_provider | search("openjdk")
-  tags:
-    - apply
-
-- include: configure.yml
+- import_tasks: configure.yml
   tags:
     - configure
