@@ -1,3 +1,5 @@
+# java/meta/main.yml
+---
 galaxy_info:
   author: Michael Cramer
   description: Ansible role for installing a JVM
