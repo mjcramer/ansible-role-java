@@ -1,5 +1,5 @@
 Java Ansible Role
-=========
+=================
 
 An ansible role for installing java
 
@@ -18,6 +18,15 @@ Dependencies
 
 A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
+Tags
+----
+- require
+- download
+- apply
+- configure
+- initialize
+- check
+
 Example Playbook
 ----------------
 
@@ -25,12 +34,12 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: mjcramer.java, x: 42 }
 
 License
 -------
 
-BSD
+Unlicensed
 
 Author Information
 ------------------
