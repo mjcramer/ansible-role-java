@@ -1,0 +1,88 @@
+---
+- name: create gce instances for role test
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars:
+    gcp_project: sandbox-1023
+    gcp_zone: us-west2-c
+    gcp_credentials_file: "/Users/cramer/.gcp/mjcramer-travis-ci.json"
+    private_dir: "/Users/cramer/.ssh"
+
+    ssh_private_key_file: "{{ private_dir }}/{{ gcp_credentials_file | basename | splitext | first }}.pem"
+    ssh_public_key_file: "./{{ gcp_credentials_file | basename | splitext | first }}.pub"
+#    ssh_public_key: "{{ lookup('file', ssh_public_key_file) }}"
+    image_families:
+      - centos-7
+
+  tasks:
+  - debug:
+      var: ansible_python_interpreter
+
+  - name: slurp credentials
+    include_vars:
+      file: "{{ gcp_credentials_file }}"
+      name: gcp_credentials
+
+  - name: create private directory
+    file:
+      path: "{{ private_dir }}"
+      state: directory
+      mode: 0700
+
+  - name: dump private key to file
+    copy:
+      content: "{{ gcp_credentials.private_key }}"
+      dest: "{{ ssh_private_key_file }}"
+      mode: 0600
+
+  - openssl_publickey:
+      path: "{{ ssh_public_key_file }}"
+      privatekey_path: "{{ ssh_private_key_file }}"
+
+  - debug:
+      var: gcp_credentials
+
+#  - name: create test instance
+#    gce:
+#      instance_names: test-java
+#      machine_type: g1-small
+#      image_family: centos-7
+#      preemptible: yes
+#      project_id: sandbox-1023
+#      credentials_file: "{{ gcp_credentials_file }}"
+#      service_account_email: "travis-ci@sandbox-1023.iam.gserviceaccount.com"
+#      service_account_permissions:
+#      - compute-rw
+#      - storage-rw
+#      metadata: "{ 'sshKeys' : 'travis:ssh-rsa " + "adsfsadfasdf" + " travis' }"
+#    register: test_java
+
+  - include_tasks: create-gcp-instance.yml
+    loop: "{{ image_families }}"
+    loop_control:
+      loop_var: image_family
+
+#  - name: add host instance
+#    add_host:
+#      hostname: "{{ item.public_ip }}"
+#      groupname: java_hosts
+#    with_items: "{{ test_java.instance_data }}"
+#
+#  - name: wait for ssh on instances
+#    wait_for:
+#      delay: 1
+#      host: "{{ item.public_ip }}"
+#      port: 22
+#      state: started
+#      timeout: 60
+#    with_items: "{{ test_java.instance_data }}"
+
+#- name: apply role to instance
+#  hosts: java_hosts
+#  vars:
+#    ansible_ssh_private_key_file: /Users/cramer/.ssh/mjcramer-travis-ci
+#  roles:
+#    - role: ../../ansible-role-java
+#      become: yes
