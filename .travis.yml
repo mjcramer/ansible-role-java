@@ -4,7 +4,6 @@ python: "3.6"
 
 env:
   - FOO=foo BAR=bar
-  - FOO=bar BAR=foo
 
 before_install:
   # Make sure everything's up to date.
@@ -15,16 +14,14 @@ install:
   - pip3 install ansible
 
 script:
-  - echo "$FOO $BAR $BAZ"
-
-#  - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
-#  - "ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo"
-#  # Run the role/playbook again, checking to make sure it's idempotent.
-#  - >
-#    ansible-playbook -i tests/inventory tests/test.yml --connection=local --become=sudo
-#    | grep -q 'changed=0.*failed=0'
-#    && (echo 'Idempotence: PASS' && exit 0)
-#    || (echo 'Idempotence: FAIL' && exit 1)
+  - "ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
+  - "ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook -i tests/inventory tests/test.yml"
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook -i tests/inventory tests/test.yml --connection=local --become=sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence: PASS' && exit 0)
+    || (echo 'Idempotence: FAIL' && exit 1)
 
 notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
