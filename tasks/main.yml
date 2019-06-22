@@ -2,7 +2,11 @@
 ---
 - fail:
     msg: "No jvm has been selected, please set 'jvm_provider' and run playbook again."
-  when: jvm_provider is not defined or ansible_os_family is not defined
+  when: jvm_provider is not defined
+
+- fail:
+    msg: "Target OS, {{ ansible_os_family }}, is not supported."
+  when: ansible_os_family not in [ 'RedHat', 'Debian' ]
 
 - import_tasks: apply.yml
   tags:

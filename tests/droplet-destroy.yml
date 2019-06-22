@@ -1,0 +1,10 @@
+---
+- debug:
+    var: droplet
+
+- name: destroy droplet
+  digital_ocean_droplet:
+    state: absent
+    id: "{{ droplet.data.droplet.id }}"
+    oauth_token: "{{ digitalocean_api_key }}"
+    wait_timeout: 500

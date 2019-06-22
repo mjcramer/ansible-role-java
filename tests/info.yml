@@ -1,0 +1,11 @@
+---
+- name: create hosts for role test
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - secret.yml
+
+  tasks:
+  - include_tasks: droplet-info.yml
