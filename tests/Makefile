@@ -1,6 +1,6 @@
 
 export ANSIBLE_PLAYBOOK_OPTS := \
-	--vault-password-file=./.ansible-vault-password
+	--vault-password-file=../.ansible-vault-password
 
 ifdef DEBUG
 	ANSIBLE_PLAYBOOK_OPTS += -vvv
