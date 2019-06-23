@@ -6,7 +6,7 @@
 
   vars:
     host_name: ansible-java-test
-    private_dir: "./ssh"
+    private_dir: "{{ inventory_dir }}/ssh"
     ssh_key_name: travis
     ssh_private_key_file: "{{ private_dir }}/{{ ssh_key_name }}"
     ssh_public_key_file: "{{ private_dir }}/{{ ssh_key_name }}.pub"
@@ -92,7 +92,7 @@
       droplet_name: "{{ host_name }}"
       droplet_os: "fedora-30-x64"
 
-  # - name: destroy private directory
-  #   file:
-  #     path: "{{ private_dir }}"
-  #     state: removed
+  - name: destroy private directory
+    file:
+      path: "{{ private_dir }}"
+      state: absent

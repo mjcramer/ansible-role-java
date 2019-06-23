@@ -1,8 +1,8 @@
 # roles/java/tasks/apply.yml
 ---
 - include_tasks: apply-{{ jvm_provider }}.yml
-  when: jvm_provider | search("oracle")
+  when: jvm_provider is search("oracle")
 
 - include_tasks: apply-{{ ansible_os_family }}.yml
-  when: jvm_provider | search("openjdk")
+  when: jvm_provider is search("openjdk")
 
