@@ -37,7 +37,7 @@
       digital_ocean_sshkey:
         oauth_token: "{{ digitalocean_api_key }}"
         name: "{{ ssh_key_name }}"
-        ssh_pub_key: "{{ keypair.public_key | str }}"
+        ssh_pub_key: "{{ keypair.public_key | string }}"
         state: present
       register: ssh_key
 
