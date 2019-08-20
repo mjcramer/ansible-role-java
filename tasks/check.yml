@@ -4,7 +4,4 @@
   register: java
 
 - debug: 
-    msg: "{{ java.stdout }}"
-
-- debug: 
     msg: "{{ java.stderr }}"

@@ -2,4 +2,5 @@
 *.iml
 .ansible-vault-password
 .ansible-facts
+.cache
 **/*.retry

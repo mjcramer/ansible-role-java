@@ -5,8 +5,7 @@
   connection: local
 
   vars:
-    droplet: "{{ lookup('file', cache_dir + '/droplet') | from_json }}"
-    ssh_key: "{{ lookup('file', cache_dir + '/ssh_key') | from_json }}"
+    cache: "{{ lookup('file', cache_dir + '/vars') | from_json }}"
 
   vars_files:
     - common.yml
@@ -16,14 +15,14 @@
     - name: destroy droplet
       digital_ocean_droplet:
         state: absent
-        id: "{{ droplet.id }}"
+        id: "{{ cache.droplet_id }}"
         oauth_token: "{{ digitalocean_api_key }}"
         wait_timeout: 500
 
     - name: delete ssh key
       digital_ocean_sshkey:
         state: absent
-        fingerprint: "{{ ssh_key.fingerprint }}"
+        fingerprint: "{{ cache.ssh_key_fingerprint }}"
         oauth_token: "{{ digitalocean_api_key }}"
 
     - name: destroy cache directory
