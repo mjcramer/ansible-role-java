@@ -1,20 +1,22 @@
 language: python
 python: '3.6'
 env:
-  - FOO=foo BAR=bar
+- FOO=foo BAR=bar
 before_install:
+- openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
+  -in .ansible-vault-password.enc -out .ansible-vault-password -d
 - sudo apt-get update -qq
 install:
 - sudo apt-get install python-dev libffi-dev
 - pip3 install ansible pyopenssl cryptography
 before_script:
-  - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv -in .ansible-vault-password.enc -out .ansible-vault-password -d
-  - make setup ADD_ANSIBLE_PLAYBOOK_OPTS="-vvv"
+- make setup ADD_ANSIBLE_PLAYBOOK_OPTS="-vvv"
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
-- make install 
-- "make install | grep -q 'changed=0.*failed=0' && (echo 'Idempotence: PASS' && exit 0) || (echo 'Idempotence: FAIL' && exit 1)"
+- make install
+- 'make install | grep -q ''changed=0.*failed=0'' && (echo ''Idempotence: PASS'' &&
+  exit 0) || (echo ''Idempotence: FAIL'' && exit 1)'
 after_script:
-  - make teardown
+- make teardown
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
