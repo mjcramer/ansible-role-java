@@ -32,6 +32,12 @@
         path: "{{ ssh_private_key_file }}"
         size: 2048
 
+    - debug:
+        msg: "{{ lookup('file', ssh_public_key_file) }}"
+
+    - debug:
+        msg: "{{ ssh_key_name }}"
+
     - name: register ssh key
       digital_ocean_sshkey:
         oauth_token: "{{ digitalocean_api_key }}"
