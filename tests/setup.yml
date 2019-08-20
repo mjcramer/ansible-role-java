@@ -35,12 +35,6 @@
     - debug:
         msg: "{{ lookup('file', ssh_public_key_file) }}"
 
-    - debug:
-        msg: "{{ ssh_key_name }}"
-
-    - debug:
-        msg: "{{ digitalocean_api_key }}"
-
     # - name: register ssh key
     #   digital_ocean_sshkey:
     #     oauth_token: "{{ digitalocean_api_key }}"

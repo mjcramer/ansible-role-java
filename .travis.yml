@@ -10,7 +10,7 @@ install:
 - sudo apt-get install python-dev libffi-dev
 - pip3 install ansible pyopenssl cryptography
 before_script:
-- make setup ADD_ANSIBLE_PLAYBOOK_OPTS="-vvv"
+- make setup 
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
 - make install
