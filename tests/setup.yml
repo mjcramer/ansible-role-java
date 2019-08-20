@@ -8,6 +8,13 @@
     - common.yml
     - secret.yml
 
+  vars:
+    os_images:
+      - fedora-30-x64
+      - centos-7-x64
+      - debian-9-x64
+      - ubuntu-18-04-x64
+
   tasks:
     - name: create cache directory
       file:

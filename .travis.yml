@@ -8,8 +8,7 @@ install:
 - sudo apt-get install python-dev libffi-dev
 - pip3 install ansible pyopenssl cryptography
 before_script:
-  - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
-    -in .ansible-vault-password.enc -out .ansible-vault-password -d
+  - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv -in .ansible-vault-password.enc -out .ansible-vault-password -d
   - make setup
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
