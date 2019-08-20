@@ -1,13 +1,14 @@
+dist: xenial
 language: python
 python: '3.7'
 env:
-- FOO=foo BAR=bar
+- JVM_PROVIDER=foo BAR=bar
 before_install:
 - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
   -in .ansible-vault-password.enc -out .ansible-vault-password -d
 - sudo apt-get update -qq
 install:
-- sudo apt-get install python-dev libffi-dev
+# - sudo apt-get install python-dev libffi-dev
 - pip3 install ansible pyopenssl cryptography
 before_script:
 - make setup 
