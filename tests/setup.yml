@@ -64,12 +64,12 @@
 
     - name: save variables
       copy:
-        content: "{{ item.value }}" 
-        dest: "{{ cache }}/vars"
+        content: "{{ item.value | to_nice_json }}" 
+        dest: "{{ cache }}/{{ item.key }}"
       with_items:
-      - variable: droplet_id
+      - key: droplet_id
         value: "{{ droplet.data.droplet.id }}"
-      - variable: ssh_key_fingerprint
+      - key: ssh_key_fingerprint
         value: "{{ ssh_key.data.ssh_key.fingerprint }}"
   
     - name: write inventory
