@@ -15,3 +15,7 @@
 - import_tasks: configure.yml
   tags:
     - configure
+
+- import_tasks: check.yml
+  tags:
+    - check

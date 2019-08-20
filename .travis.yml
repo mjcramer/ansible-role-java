@@ -1,20 +1,21 @@
 language: python
 python: '3.6'
+env:
+  - FOO=foo BAR=bar
 before_install:
 - sudo apt-get update -qq
 install:
 - sudo apt-get install python-dev libffi-dev
 - pip3 install ansible pyopenssl cryptography
 before_script:
-- openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
-  -in .ansible-vault-password.enc -out .ansible-vault-password -d
+  - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
+    -in .ansible-vault-password.enc -out .ansible-vault-password -d
+  - make setup
 script:
-- "ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook --vault-password-file=./.ansible-vault-password
-  --inventory tests/inventory tests/test.yml --syntax-check"
-- "ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook --vault-password-file=./.ansible-vault-password
-  --inventory tests/inventory tests/test.yml"
-- 'ANSIBLE_CONFIG=tests/ansible.cfg ansible-playbook --vault-password-file=./.ansible-vault-password
-  --inventory tests/inventory tests/test.yml | grep -q ''changed=0.*failed=0'' &&
-  (echo ''Idempotence: PASS'' && exit 0) || (echo ''Idempotence: FAIL'' && exit 1)'
+- make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
+- make install
+- "make install | grep -q 'changed=0.*failed=0' && (echo 'Idempotence: PASS' && exit 0) || (echo 'Idempotence: FAIL' && exit 1)"
+after_script:
+  - make teardown
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

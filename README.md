@@ -1,4 +1,6 @@
 Java Ansible Role
+[![Build Status](https://travis-ci.org/mjcramer/ansible-role-java.svg?branch=master)](https://travis-ci.org/mjcramer/ansible-role-java)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-mjcramer.java-blue.svg)](https://galaxy.ansible.com/mjcramer/java/)
 =================
 
 An ansible role for installing java

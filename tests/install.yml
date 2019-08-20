@@ -1,0 +1,11 @@
+---
+- name: apply role to instance
+  hosts: java_hosts
+  
+  roles:
+    - role: ../../ansible-role-java
+      become: yes
+
+  tasks:
+    - debug:
+        var: java_home

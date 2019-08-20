@@ -1,0 +1,10 @@
+---
+- name: check | print version
+  command: java -version
+  register: java
+
+- debug: 
+    msg: "{{ java.stdout }}"
+
+- debug: 
+    msg: "{{ java.stderr }}"
