@@ -38,18 +38,21 @@
     - debug:
         msg: "{{ ssh_key_name }}"
 
-    - name: register ssh key
-      digital_ocean_sshkey:
-        oauth_token: "{{ digitalocean_api_key }}"
-        name: "{{ ssh_key_name }}"
-        ssh_pub_key: "{{ lookup('file', ssh_public_key_file) }}"
-        state: present
-      register: ssh_key
+    - debug:
+        msg: "{{ digitalocean_api_key }}"
 
-    - name: save ssh key data
-      copy:
-        content: "{{ ssh_key.data.ssh_key }}" 
-        dest: "{{ cache }}/ssh_key"
+    # - name: register ssh key
+    #   digital_ocean_sshkey:
+    #     oauth_token: "{{ digitalocean_api_key }}"
+    #     name: "{{ ssh_key_name }}"
+    #     ssh_pub_key: "{{ lookup('file', ssh_public_key_file) }}"
+    #     state: present
+    #   register: ssh_key
+
+    # - name: save ssh key data
+    #   copy:
+    #     content: "{{ ssh_key.data.ssh_key }}" 
+    #     dest: "{{ cache }}/ssh_key"
 
     - name: create a new droplet
       digital_ocean_droplet:
@@ -59,8 +62,8 @@
         size: 2gb
         region: sfo2
         image: "fedora-30-x64"
-        ssh_keys: 
-        - "{{ ssh_key.data.ssh_key.id }}"
+        # ssh_keys: 
+        # - "{{ ssh_key.data.ssh_key.id }}"
         oauth_token: "{{ digitalocean_api_key }}"
         wait_timeout: 500
         monitoring: no
