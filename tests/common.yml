@@ -1,5 +1,5 @@
 ---
-host_name: ansible-java-test
+host_name: test-ansible-java
 cache_dir: "{{ cache | default('cache') }}"
 private_dir: "{{ cache_dir }}/private"
 ssh_key_name: build_key
