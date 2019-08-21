@@ -2,5 +2,6 @@
 ---
 - name: apply | apt package
   apt:
-    name: "openjdk-{{ java_version_major }}-jdk"
+    name: "openjdk-{{ java_version }}-jdk"
     state: present
+    update_cache: yes

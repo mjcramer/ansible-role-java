@@ -6,7 +6,7 @@ oracle:
   java_home: "{{ base_home_dir }}/jdk1.{{ oracle_jdk_version_major }}.{{ oracle_jdk_version_minor }}_{{ oracle_jdk_version_update }}"
   
 openjdk:
-  version: "{{ java_version }}.0"
+  version: "{{ java_version }}"
 # TODO: This one is for ubuntu
 #  java_home: /usr/lib/jvm/default-java
 # TODO: This one is for rhel

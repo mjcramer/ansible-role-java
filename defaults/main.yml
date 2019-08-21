@@ -2,10 +2,9 @@
 ---
 jvm_provider: openjdk
 
-java_version: 1.8
-java_version_major: 8
+java_version: 11
 
-oracle_jdk_version_major: "8"
+oracle_jdk_version_major: "11"
 oracle_jdk_version_minor: "0"
 oracle_jdk_version_update: "45"
 oracle_jdk_version_build: "02"
