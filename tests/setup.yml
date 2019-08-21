@@ -35,12 +35,9 @@
 
     - name: register ssh key
       digital_ocean_sshkey:
-        # oauth_token: "{{ digitalocean_api_key }}"
-        # name: "{{ ssh_key_name }}"
-        oauth_token: "aaaa"
-        name: "aaa"
-        # ssh_pub_key: "{{ keypair.public_key }}"
-        ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example"
+        oauth_token: "{{ digitalocean_api_key }}"
+        name: "{{ ssh_key_name }}"
+        ssh_pub_key: "{{ keypair.public_key }}"
         state: present
       register: ssh_key
 
