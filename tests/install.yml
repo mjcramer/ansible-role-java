@@ -4,6 +4,9 @@
   gather_facts: no
   connection: local
 
+  vars_files:
+    - common.yml
+
   vars:
     droplet_ids: "{{ lookup('file', cache_dir + '/droplet_ids') | from_json }}"
 
