@@ -1,7 +1,6 @@
 Java Ansible Role
-[![Build Status](https://travis-ci.org/mjcramer/ansible-role-java.svg?branch=master)](https://travis-ci.org/mjcramer/ansible-role-java)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-mjcramer.java-blue.svg)](https://galaxy.ansible.com/mjcramer/java/)
 =================
+[![Build Status](https://travis-ci.org/mjcramer/ansible-role-java.svg?branch=master)](https://travis-ci.org/mjcramer/ansible-role-java) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-mjcramer.java-blue.svg)](https://galaxy.ansible.com/mjcramer/java/) 
 
 An ansible role for installing java
 
@@ -10,9 +9,9 @@ Requirements
 
 Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-google-auth
-pyOpenSSL
-dopy
+- google-auth
+- pyOpenSSL
+- dopy
 
 Role Variables
 --------------
