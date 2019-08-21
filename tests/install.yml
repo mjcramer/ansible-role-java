@@ -1,17 +1,21 @@
 ---
-# - name: create hosts for role test
-#   hosts: localhost
-#   gather_facts: no
-#   connection: local
+- name: wait for machines to boot
+  hosts: localhost
+  gather_facts: no
+  connection: local
 
-#   tasks:
-#     - name: wait for ssh on instances
-#       wait_for:
-#         delay: 1
-#         host: "{{ droplet.data.ip_address }}"
-#         port: 22
-#         state: started
-#         timeout: 60
+  vars:
+    droplet_ids: "{{ lookup('file', cache_dir + '/droplet_ids') | from_json }}"
+
+  tasks:
+    - name: wait for ssh on instances
+      wait_for:
+        delay: 1
+        host: "{{ item }}"
+        port: 22
+        state: started
+        timeout: 60
+      loop: "{{ droplet_ids }}"
 
 - name: apply role to instance
   hosts: java_hosts
