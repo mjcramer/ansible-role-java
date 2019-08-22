@@ -58,4 +58,4 @@ Unlicensed
 Author Information
 ------------------
 
-[Michael Cramer](http://michael.cramer.name), *michael@cramer.name*
+[Michael Cramer](http://michael.cramer.name), *michael@cramer.name* _mjcramer_
