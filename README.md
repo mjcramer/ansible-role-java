@@ -18,9 +18,12 @@ Role Variables
 
 Currently, the oracle and openjdk JVMs are supported. 
 
-`jvm_provider: openjdk` 
-or 
-`jvm_provider: oracle` 
+| Name | Value |
+| --- | --- |
+| jvm_provider | - openjdk | 
+| | - oracle |
+| java_version | - 8 |
+| | - 11 |
 
 
 Dependencies
@@ -45,7 +48,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: mjcramer.java, x: 42 }
+         - { role: mjcramer.java, java_version: 8 }
 
 License
 -------
