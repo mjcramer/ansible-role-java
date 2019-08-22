@@ -9,10 +9,9 @@ before_install:
   -in .ansible-vault-password.enc -out .ansible-vault-password -d
 - sudo apt-get update -qq
 install:
-# - sudo apt install python3.6
 - pip3 install ansible pyopenssl cryptography
 before_script:
-- make setup 
+- make setup
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
 - make install
