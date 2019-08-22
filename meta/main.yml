@@ -1,7 +1,4 @@
 ---
-
-allow_duplicates: yes
-
 galaxy_info:
   author: Michael Cramer
   description: Ansible role for installing Java
@@ -17,3 +14,5 @@ galaxy_info:
   galaxy_tags:
     - java
     - installer
+
+allow_duplicates: yes

@@ -1,5 +1,12 @@
 # roles/java/tasks/apply-Debian.yml
 ---
+- name: apply | add unstable repo 
+  apt_repository:
+    repo: deb http://ftp.us.debian.org/debian sid main
+    state: present
+    update_cache: yes
+  when: ansible_distribution is 'Debian'
+
 - name: apply | apt package
   apt:
     name: "openjdk-{{ openjdk.version }}-jdk"
