@@ -1,8 +1,8 @@
 # roles/java/defaults/main.yml
 ---
 jvm_provider: openjdk
-
 java_version: 11
+os_arch: amd64
 
 oracle_jdk_version_major: "11"
 oracle_jdk_version_minor: "0"
