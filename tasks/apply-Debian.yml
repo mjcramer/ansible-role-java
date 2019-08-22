@@ -5,7 +5,7 @@
     repo: deb http://ftp.us.debian.org/debian sid main
     state: present
     update_cache: yes
-  when: ansible_distribution is 'Debian'
+  when: ansible_distribution is match('Debian')
 
 - name: apply | apt package
   apt:
