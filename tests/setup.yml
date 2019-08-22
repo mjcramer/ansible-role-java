@@ -49,7 +49,7 @@
       digital_ocean_droplet:
         state: present
         name: "{{ host_name }}-{{ item }}"
-        unique_name: yes
+        unique_name: no
         size: 2gb
         region: sfo2
         image: "{{ os_images[item] }}"
