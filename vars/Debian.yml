@@ -1,0 +1,5 @@
+# roles/java/vars/Debian.yml
+---
+openjdk:
+  version: "{{ java_version }}"
+  java_home: /usr/lib/jvm/default-java

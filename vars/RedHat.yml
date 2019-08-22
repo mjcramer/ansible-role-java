@@ -1,0 +1,5 @@
+# roles/java/vars/RedHat.yml
+---
+openjdk:
+  version: "{{ java_version if ((java_version|int) > 8) else '1.' + java_version + '.0' }}"
+  java_home: /usr/lib/jvm/jre-openjdk

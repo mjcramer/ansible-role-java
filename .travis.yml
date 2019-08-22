@@ -2,7 +2,7 @@ dist: bionic
 language: python
 python: '3.7'
 env:
-- JVM_PROVIDER=openjdk JAVA_VERSION=8 DISTROS=debian,fedora
+- JVM_PROVIDER=openjdk JAVA_VERSION=8 DISTROS=ubuntu,debian,fedora
 - JVM_PROVIDER=openjdk JAVA_VERSION=11 DISTROS=ubuntu,fedora
 before_install:
 - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
@@ -16,8 +16,7 @@ before_script:
 script:
 - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
 - make install
-- 'make install ADD_ANSIBLE_PLAYBOOK_OPTS="--skip-tags=check" | grep -q ''changed=0.*failed=0'' && (echo ''Idempotence: PASS'' &&
-  exit 0) || (echo ''Idempotence: FAIL'' && exit 1)'
+- 'make install | grep -q ''changed=0.*failed=0'' && (echo ''Idempotence: PASS'' && exit 0) || (echo ''Idempotence: FAIL'' && exit 1)'
 after_script:
 - make teardown
 notifications:

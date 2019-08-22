@@ -2,6 +2,7 @@
 - name: check | print version
   command: java -version
   register: java
+  changed_when: False
 
 - debug: 
     msg: "{{ java.stderr }}"

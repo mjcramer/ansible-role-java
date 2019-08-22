@@ -16,7 +16,7 @@ ifdef JVM_PROVIDER
 endif
 
 ifdef JAVA_VERSION
-	ANSIBLE_PLAYBOOK_OPTS += --extra-vars=java_version=$(CACHE)
+	ANSIBLE_PLAYBOOK_OPTS += --extra-vars=java_version=$(JAVA_VERSION)
 endif
 
 ifdef ADD_ANSIBLE_PLAYBOOK_OPTS

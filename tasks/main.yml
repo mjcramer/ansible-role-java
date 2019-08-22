@@ -8,6 +8,9 @@
     msg: "Target OS, {{ ansible_os_family }}, is not supported."
   when: ansible_os_family not in [ 'RedHat', 'Debian' ]
 
+- include_vars:
+    file: "{{ ansible_os_family }}.yml"
+
 - import_tasks: apply.yml
   tags:
     - apply
