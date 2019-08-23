@@ -11,6 +11,7 @@
   template:
     src: java.fact.j2
     dest: /etc/ansible/facts.d/java.fact
+    mode: 0644
 
 - name:  configure | create shell profile
   template:
