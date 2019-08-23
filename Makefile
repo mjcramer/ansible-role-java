@@ -1,8 +1,8 @@
 
 export CACHE := $(shell pwd)/.cache
 export ANSIBLE_PLAYBOOK_OPTS := \
-	--vault-password-file=.ansible-vault-password \
-	--extra-vars=cache=${CACHE}
+	--vault-password-file .ansible-vault-password \
+	--extra-vars cache=${CACHE}
 export ANSIBLE_CONFIG := tests/ansible.cfg 
 
 ifdef DISTROS
@@ -36,6 +36,12 @@ teardown:
 		$(ANSIBLE_PLAYBOOK_OPTS) \
 		--inventory localhost, \
 		tests/teardown.yml
+
+ip:
+	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible \
+		--inventory ${CACHE}/inventory.yml \
+		--module-name debug --args var=ansible_ssh_host \
+		all
 
 ping:
 	ANSIBLE_CONFIG=${ANSIBLE_CONFIG} ansible \
