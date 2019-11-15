@@ -1,6 +1,6 @@
 
 pyopenssl 
-cryptographyv 
+cryptography
 ansible 
 molecule 
 docker-py
