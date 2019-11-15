@@ -4,5 +4,5 @@
   register: java
   changed_when: False
 
-- debug: 
+- debug:
     msg: "{{ java.stderr }}"

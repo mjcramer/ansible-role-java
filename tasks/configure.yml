@@ -20,5 +20,3 @@
   with_items:
     - java.sh
     - java.csh
-
-

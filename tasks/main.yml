@@ -1,14 +1,17 @@
 # roles/java/tasks/main.yml
 ---
-- fail:
+- name: main | check jvm provider
+  fail:
     msg: "No jvm has been selected, please set 'jvm_provider' and run playbook again."
   when: jvm_provider is not defined
 
-- fail:
+- name: main | check os family support
+  fail:
     msg: "Target OS, {{ ansible_os_family }}, is not supported."
   when: ansible_os_family not in [ 'RedHat', 'Debian' ]
 
-- include_vars:
+- name: main | include os family
+  include_vars:
     file: "{{ ansible_os_family }}.yml"
 
 - import_tasks: apply.yml

@@ -2,4 +2,4 @@
 ---
 openjdk:
   version: "{{ java_version }}"
-  java_home: /usr/lib/jvm/java-{{ java_version }}-openjdk-{{ os_arch }}/
+  java_home: /usr/lib/jvm/java-{{ java_version }}-openjdk-{{ os_arch }}

@@ -5,4 +5,3 @@
 
 - include_tasks: apply-{{ ansible_os_family }}.yml
   when: jvm_provider is search("openjdk")
-

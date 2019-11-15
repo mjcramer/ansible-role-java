@@ -32,4 +32,3 @@
     dest: "{{ base_home_dir }}"
     copy: no
     creates: "{{ oracle.java_home }}"
-

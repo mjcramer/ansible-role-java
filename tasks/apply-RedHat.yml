@@ -3,4 +3,4 @@
 - name: apply | yum package
   yum:
     name: "java-{{ openjdk.version }}-openjdk"
-    state: latest
+    state: present

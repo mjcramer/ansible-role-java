@@ -1,6 +1,6 @@
 # roles/java/tasks/apply-Debian.yml
 ---
-- name: apply | add unstable repo 
+- name: apply | add unstable repo
   apt_repository:
     repo: deb http://ftp.us.debian.org/debian sid main
     state: present

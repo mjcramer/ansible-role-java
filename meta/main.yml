@@ -3,6 +3,7 @@ galaxy_info:
   author: Michael Cramer
   description: Ansible role for installing Java
   license: Unlicensed
+  issue_tracker_url: https://github.com/mjcramer/ansible-role-java/issues
   min_ansible_version: 2.8
   platforms:
   - name: Ubuntu
