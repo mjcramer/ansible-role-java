@@ -5,11 +5,14 @@ python: '3.7'
 services:
 - docker
 
+cache: 
+- pip
+
 env:
 - JVM_PROVIDER=openjdk JAVA_VERSION=8 
 - JVM_PROVIDER=openjdk JAVA_VERSION=11 
-- JVM_PROVIDER=oracle JAVA_VERSION=8 
-- JVM_PROVIDER=orcale JAVA_VERSION=11 
+# - JVM_PROVIDER=oracle JAVA_VERSION=8 
+# - JVM_PROVIDER=orcale JAVA_VERSION=11 
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_ab4c441ac2d2_key -iv $encrypted_ab4c441ac2d2_iv
@@ -37,10 +40,9 @@ install:
 # - make install
 # - make install 2>/dev/null | ./tests/idempotence_check.sh
 script:
-- cd docker
  
 # Molecule Testing Travis-locally with Docker
-- molecule test
+- molecule --debug test
  
 # # Molecule Testing on AWS EC2
 # - molecule create --scenario-name aws-ec2-ubuntu
