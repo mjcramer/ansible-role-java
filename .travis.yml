@@ -22,35 +22,8 @@ before_install:
 install:
 - pip3 install -r requirements.txt
  
-# # install AWS related packages
-# - pip3 install boto boto3
-# - pip3 install --upgrade awscli
- 
-# # configure AWS CLI
-# - aws configure set aws_access_key_id $AWS_ACCESS_KEY
-# - aws configure set aws_secret_access_key $AWS_SECRET_KEY
-# - aws configure set default.region $DEPLOYMENT_REGION
-# # show AWS CLI config
-# - aws configure list
-
-# before_script:
-# - make setup ADD_ANSIBLE_PLAYBOOK_OPTS="--extra-vars host_name=ansible-java-travis-$TRAVIS_JOB_ID"
-# script:
-# - make install ADD_ANSIBLE_PLAYBOOK_OPTS="--syntax-check"
-# - make install
-# - make install 2>/dev/null | ./tests/idempotence_check.sh
-script:
- 
-# Molecule Testing Travis-locally with Docker
+script: 
 - molecule --debug test
  
-# # Molecule Testing on AWS EC2
-# - molecule create --scenario-name aws-ec2-ubuntu
-# - molecule converge --scenario-name aws-ec2-ubuntu
-# - molecule verify --scenario-name aws-ec2-ubuntu
-# - molecule destroy --scenario-name aws-ec2-ubuntu
-
-# after_script:
-# - make teardown
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

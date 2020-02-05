@@ -1,6 +1,7 @@
 
 pyopenssl 
 cryptography
+docker
 ansible 
 molecule 
-docker-py
+molecule[vagrant]

@@ -1,5 +1,13 @@
 ---
 - name: Converge
   hosts: all
+  become: yes
+
+  pre_tasks:
+    - debug: msg="{{ lookup('env','JVM_PROVIDER') }} is the jvm provider"
+    - debug: msg="{{ lookup('env','JAVA_VERSION') }} is the java versionm"
+
   roles:
     - role: ansible-role-java
+      jvm_provider: "{{ lookup('env','JVM_PROVIDER') }}"
+      java_version: "{{ lookup('env','JAVA_VERSION') }}"
