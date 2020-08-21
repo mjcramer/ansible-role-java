@@ -17,6 +17,7 @@
   template:
     src: profile.j2
     dest: /etc/profile.d/{{ item }}
+    mode: 600
   with_items:
     - java.sh
-    - java.csh
+    - java.cscd h

@@ -1,0 +1,23 @@
+---
+- name: Converge
+  hosts: all
+  become: yes
+
+  vars:
+    cache_dir: "{{ cache | default('cache') }}"
+    private_dir: "{{ cache_dir }}/private"
+
+    download_dir: /var/cache
+    base_home_dir: /opt
+    base_conf_dir: /etc
+    base_log_dir: /var/log
+    base_lib_dir: /var/lib
+    base_run_dir: /var/run
+    base_script_dir: /usr/local/bin
+    base_daemon_dir: /usr/local/sbin
+    base_data_dir: /srv/data
+
+  tasks:
+    - name: Include java role
+      include_role:
+        name: ansible-role-java

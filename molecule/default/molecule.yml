@@ -6,24 +6,26 @@ dependency:
 driver:
   name: vagrant
   provider:
-    name: virtualbox
-
-lint:
-  name: yamllint
+    name: vbox
 
 platforms:
-  # - name: ubuntu-bionic
-  #   box: ubuntu/bionic64
-  # - name: debian-buster
-  #   box: debian/buster64
-  - name: fedora-31
-    box: fedora/31-cloud-base
-    box_version: "31.20191023.0"
-  # - name: centos-7
-  #   box: centos/7
+#  - name: centos-8
+#    box: centos/8
+#    memory: 4096
+#    cpus: 1
+
+#  - name: ubuntu-focal64
+#    box: ubuntu/focal64
+#    memory: 4096
+#    cpus: 1
+
+  - name: ubuntu-bionic64
+    box: ubuntu/bionic64
+    memory: 4096
+    cpus: 1
 
 provisioner:
   name: ansible
-    
+
 verifier:
-  name: testinfra
+  name: ansible

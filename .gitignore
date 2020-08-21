@@ -1,4 +1,6 @@
 # Ignore these files
+.DS_Store
+.idea
 *.iml
 .ansible-vault-password
 .ansible-facts
